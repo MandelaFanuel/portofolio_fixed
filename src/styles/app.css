@@ -241,6 +241,7 @@ footer img {
   grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.7fr);
   gap: clamp(32px, 5vw, 88px);
   align-items: center;
+  padding-top: clamp(24px, 3vw, 42px);
   min-height: min(860px, calc(100vh - 92px));
 }
 
@@ -950,6 +951,7 @@ footer .social-links {
   }
 
   .hero {
+    padding-top: 22px;
     min-height: auto;
   }
 
@@ -1024,6 +1026,10 @@ footer .social-links {
 
   .section-pad {
     padding-block: 58px;
+  }
+
+  .hero.section-pad {
+    padding-top: 20px;
   }
 
   .hero-highlights,
