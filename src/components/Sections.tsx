@@ -1,5 +1,6 @@
 import type { Content } from '../data/content';
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
+import { LinkedText } from './LinkedText';
 import { SectionTitle } from './SectionTitle';
 import { SocialLinks } from './SocialLinks';
 import { Timeline } from './Timeline';
@@ -10,7 +11,7 @@ export function Stats({ stats }: { stats: Content['stats'] }) {
       {stats.map((item) => (
         <article key={item.label}>
           <strong>{item.value}</strong>
-          <span>{item.label}</span>
+          <span><LinkedText text={item.label} /></span>
         </article>
       ))}
     </section>
@@ -19,22 +20,24 @@ export function Stats({ stats }: { stats: Content['stats'] }) {
 
 export function About({ about, identity }: { about: Content['about']; identity: Content['identity'] }) {
   return (
-    <section id="about" className="two-column section-pad">
-      <div>
-        <SectionTitle title={about.title} />
+    <section id="about" className="section-pad about-section">
+      <SectionTitle title={about.title} centered />
+      <div className="two-column about-grid">
+        <div>
         {about.paragraphs.map((paragraph) => (
-          <p className="body-copy" key={paragraph}>{paragraph}</p>
+          <p className="body-copy" key={paragraph}><LinkedText text={paragraph} /></p>
         ))}
+        </div>
+        <aside className="identity-card">
+          <h2>{identity.title}</h2>
+          {identity.items.map((item) => (
+            <div className="identity-row" key={item.label}>
+              <span>{item.label}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </aside>
       </div>
-      <aside className="identity-card">
-        <h2>{identity.title}</h2>
-        {identity.items.map((item) => (
-          <div className="identity-row" key={item.label}>
-            <span>{item.label}</span>
-            <strong>{item.value}</strong>
-          </div>
-        ))}
-      </aside>
     </section>
   );
 }
@@ -43,11 +46,11 @@ export function Experience({ experience, education }: { experience: Content['exp
   return (
     <section id="experience" className="section-pad journey-sections">
       <div className="journey-section">
-        <SectionTitle title={experience.title} />
+        <SectionTitle title={experience.title} centered />
         <Timeline items={experience.items} compact />
       </div>
       <div className="journey-section">
-        <SectionTitle title={education.title} />
+        <SectionTitle title={education.title} centered />
         <Timeline items={education.items} compact />
       </div>
     </section>
@@ -61,7 +64,7 @@ export function Skills({ skills, languages }: { skills: Content['skills']; langu
       <div className="skill-grid">
         {skills.groups.map((group) => (
           <article className="skill-card" key={group.title}>
-            <h3>{group.title}</h3>
+            <h3><LinkedText text={group.title} /></h3>
             <ul>
               {group.items.map((item) => <li key={item}>{item}</li>)}
             </ul>
@@ -117,57 +120,77 @@ export function Projects({ projects }: { projects: Content['projects'] }) {
 }
 
 export function Contact({ contact }: { contact: Content['contact'] }) {
+  const [status, setStatus] = useState('');
+
   return (
     <section id="contact" className="section-pad contact-section">
       <SectionTitle title={contact.title} centered />
       <p>{contact.text}</p>
+      <p className="form-notice">{contact.formNotice}</p>
+      <div className="contact-icons">
+        <SocialLinks />
+      </div>
       <div className="contact-panel">
-        <div className="contact-icons">
-          <SocialLinks />
-        </div>
-        <form className="contact-form" onSubmit={handleContactSubmit}>
+        <form className="contact-form" onSubmit={(event) => handleContactSubmit(event, contact.email, setStatus)}>
           <input name="name" type="text" placeholder="Nom complet" required />
           <input name="email" type="email" placeholder="Adresse email" required />
           <input name="subject" type="text" placeholder="Sujet" required />
           <textarea name="message" placeholder="Message" rows={5} required />
           <button className="button primary" type="submit">Envoyer le message</button>
+          {status ? <p className="form-status" role="status">{status}</p> : null}
         </form>
       </div>
     </section>
   );
 }
 
-async function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
+async function handleContactSubmit(event: FormEvent<HTMLFormElement>, fallbackEmail: string, setStatus: (message: string) => void) {
   event.preventDefault();
   const form = event.currentTarget;
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
   if (!serviceId || !templateId || !publicKey) {
-    alert('Le formulaire sera actif après configuration EmailJS.');
+    const subject = encodeURIComponent(String(data.subject || 'Contact depuis le portfolio'));
+    const body = encodeURIComponent(`Nom: ${data.name}\nEmail: ${data.email}\n\n${data.message}`);
+    window.location.href = `mailto:${fallbackEmail}?subject=${subject}&body=${body}`;
+    setStatus('Votre application email va s’ouvrir avec le message préparé.');
     return;
   }
 
-  const formData = new FormData(form);
   const payload = {
     service_id: serviceId,
     template_id: templateId,
     user_id: publicKey,
-    template_params: Object.fromEntries(formData.entries())
+    template_params: {
+      from_name: data.name,
+      from_email: data.email,
+      subject: data.subject,
+      message: data.message,
+      reply_to: data.email,
+      to_email: fallbackEmail
+    }
   };
 
-  const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
+  try {
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-  if (!response.ok) {
-    alert('Erreur lors de l’envoi. Veuillez réessayer.');
-    return;
+    if (!response.ok) {
+      setStatus('Le message n’a pas pu être envoyé. Veuillez réessayer.');
+      return;
+    }
+
+    form.reset();
+    setStatus('Message envoyé avec succès.');
+  } catch {
+    setStatus('Connexion indisponible. Veuillez réessayer.');
   }
-
-  form.reset();
-  alert('Message envoyé avec succès.');
 }

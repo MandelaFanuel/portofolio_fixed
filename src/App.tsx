@@ -30,9 +30,11 @@ export function App() {
         <Contact contact={t.contact} />
       </main>
       <footer>
-        <img src="/profile.jpg" alt="" aria-hidden="true" />
-        <span>{t.footer}</span>
         <SocialLinks compact />
+        <div className="footer-copy">
+          <img src="/profile.jpg" alt="" aria-hidden="true" />
+          <span>{t.footer}</span>
+        </div>
       </footer>
     </div>
   );

@@ -54,6 +54,16 @@ a {
   color: inherit;
 }
 
+.inline-link {
+  color: var(--title);
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.inline-link:hover {
+  text-decoration: underline;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
@@ -462,6 +472,15 @@ h3,
   align-items: start;
 }
 
+.about-section .section-title {
+  justify-items: center;
+  text-align: center;
+}
+
+.about-grid {
+  margin-top: 34px;
+}
+
 .section-title {
   display: grid;
   gap: 14px;
@@ -551,7 +570,7 @@ h3,
 }
 
 .journey-section .section-title {
-  max-width: 860px;
+  max-width: none;
 }
 
 .timeline::before {
@@ -769,6 +788,12 @@ h3,
   text-align: center;
 }
 
+.form-notice {
+  margin: 10px auto 0;
+  color: var(--title);
+  font-weight: 850;
+}
+
 .contact-links {
   justify-content: center;
   flex-wrap: wrap;
@@ -777,26 +802,25 @@ h3,
 }
 
 .contact-panel {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.45fr) minmax(320px, 0.55fr);
-  gap: clamp(18px, 3vw, 42px);
-  align-items: start;
-  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
 }
 
 .contact-icons {
-  display: grid;
-  place-items: center;
-  min-height: 220px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.contact-icons .social-links {
+  margin-top: 0;
 }
 
 .contact-form {
   display: grid;
   gap: 12px;
+  width: min(100%, 860px);
   padding: clamp(18px, 2vw, 28px);
 }
 
@@ -815,6 +839,12 @@ h3,
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--title);
+}
+
+.form-status {
+  margin: 0;
+  color: var(--title);
+  font-weight: 850;
 }
 
 .contact-links a,
@@ -836,9 +866,10 @@ h3,
 }
 
 footer {
+  display: grid;
+  justify-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+  gap: 16px;
   padding: 32px var(--page-pad) 44px;
   color: var(--muted-2);
   font-weight: 750;
@@ -848,6 +879,19 @@ footer {
 footer img {
   width: 34px;
   height: 34px;
+}
+
+footer .social-links {
+  justify-content: center;
+  margin-top: 0;
+}
+
+.footer-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 @keyframes rise {
@@ -901,8 +945,7 @@ footer img {
   }
 
   .hero,
-  .two-column,
-  .contact-panel {
+  .two-column {
     grid-template-columns: 1fr;
   }
 

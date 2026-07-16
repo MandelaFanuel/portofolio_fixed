@@ -1,4 +1,5 @@
 import type { TimelineItem } from '../data/content';
+import { LinkedText } from './LinkedText';
 
 export function Timeline({ items, compact = false }: { items: TimelineItem[]; compact?: boolean }) {
   return (
@@ -10,15 +11,15 @@ export function Timeline({ items, compact = false }: { items: TimelineItem[]; co
             <time>{item.period}</time>
           </div>
           <div>
-            <h3>{item.title}</h3>
+            <h3><LinkedText text={item.title} /></h3>
             {item.placeUrl ? (
               <a className="timeline-place" href={item.placeUrl} target="_blank" rel="noreferrer">
-                {item.place}
+                <LinkedText text={item.place} />
               </a>
             ) : (
-              <strong>{item.place}</strong>
+              <strong><LinkedText text={item.place} /></strong>
             )}
-            <p>{item.description}</p>
+            <p><LinkedText text={item.description} /></p>
           </div>
         </article>
       ))}

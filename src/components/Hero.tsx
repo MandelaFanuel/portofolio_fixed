@@ -1,14 +1,15 @@
 import type { Content } from '../data/content';
+import { LinkedText } from './LinkedText';
 import { SocialLinks } from './SocialLinks';
 
 export function Hero({ hero }: { hero: Content['hero'] }) {
   return (
     <section className="hero section-pad">
       <div className="hero-copy">
-        <p className="role">{hero.role}</p>
+        <p className="role"><LinkedText text={hero.role} /></p>
         <h1>{hero.headline}</h1>
         <Portrait mobile />
-        <p className="intro">{hero.intro}</p>
+        <p className="intro"><LinkedText text={hero.intro} /></p>
         <div className="hero-highlights">
           {hero.highlights.map((item) => <span key={item}>{item}</span>)}
         </div>
@@ -29,7 +30,7 @@ function Portrait({ mobile = false }: { mobile?: boolean }) {
       <img src="/profile.jpg" alt="Mandela KASUMBA Fanuel" />
       <div>
         <strong>Mandela KASUMBA Fanuel</strong>
-        <span>Gitega - RundiNova Tech</span>
+        <span><LinkedText text="Gitega - RundiNova Tech" /></span>
       </div>
     </div>
   );

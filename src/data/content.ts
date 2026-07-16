@@ -40,13 +40,13 @@ export type Content = {
   skills: { title: string; groups: { title: string; items: string[] }[] };
   languages: { title: string; items: string[] };
   projects: { title: string; intro: string; groups: ProjectGroup[] };
-  contact: { title: string; text: string; email: string; phone: string; location: string };
+  contact: { title: string; text: string; formNotice: string; email: string; phone: string; location: string };
   footer: string;
 };
 
 const frProjectGroups: ProjectGroup[] = [
   {
-    title: 'Travail professionnel - RundiNova',
+    title: 'Travail professionnel - RundiNova Tech',
     items: [
       {
         title: 'ComLab Burundi',
@@ -65,18 +65,6 @@ const frProjectGroups: ProjectGroup[] = [
         description: 'Système éducatif innovant conçu pour vérifier l’authenticité des documents académiques officiels et soutenir l’inclusion des apprenants.',
         tags: ['Éducation', 'Vérification', 'Inclusion'],
         status: 'Site protégé par le gouvernement'
-      },
-      {
-        title: 'ExpoCheck',
-        description: 'Solution de contrôle et de vérification pensée pour fiabiliser les opérations terrain, les inscriptions et les preuves de participation.',
-        tags: ['Contrôle', 'Vérification', 'Terrain'],
-        status: 'En développement'
-      },
-      {
-        title: 'EduCongo',
-        description: 'Projet éducatif destiné à soutenir l’apprentissage, l’organisation académique et l’accès à des outils numériques adaptés au contexte congolais.',
-        tags: ['Éducation', 'RDC', 'Numérique'],
-        status: 'En développement'
       },
       {
         title: 'RundiCheck',
@@ -112,6 +100,18 @@ const frProjectGroups: ProjectGroup[] = [
         description: 'Solution numérique orientée pharmacie pour synchroniser les informations, suivre les flux et améliorer la coordination entre acteurs de santé.',
         tags: ['Pharmacie', 'Synchronisation', 'Santé'],
         status: 'En développement'
+      },
+      {
+        title: 'ExpoCheck',
+        description: 'Solution de contrôle et de vérification pensée pour fiabiliser les opérations terrain, les inscriptions et les preuves de participation.',
+        tags: ['Contrôle', 'Vérification', 'Terrain'],
+        status: 'En développement'
+      },
+      {
+        title: 'EduCongo',
+        description: 'Projet éducatif destiné à soutenir l’apprentissage, l’organisation académique et l’accès à des outils numériques adaptés au contexte congolais.',
+        tags: ['Éducation', 'RDC', 'Numérique'],
+        status: 'En développement'
       }
     ]
   }
@@ -138,18 +138,6 @@ const enProjectGroups: ProjectGroup[] = [
         description: 'Education-oriented system designed to verify the authenticity of official academic documents and support learner inclusion.',
         tags: ['Education', 'Verification', 'Inclusion'],
         status: 'Government-protected site'
-      },
-      {
-        title: 'ExpoCheck',
-        description: 'Control and verification solution designed to secure field operations, registrations and participation proofs.',
-        tags: ['Control', 'Verification', 'Field'],
-        status: 'In development'
-      },
-      {
-        title: 'EduCongo',
-        description: 'Education project built to support learning, academic organization and access to digital tools adapted to the Congolese context.',
-        tags: ['Education', 'DRC', 'Digital'],
-        status: 'In development'
       },
       {
         title: 'RundiCheck',
@@ -185,6 +173,18 @@ const enProjectGroups: ProjectGroup[] = [
         description: 'Pharmacy-oriented digital solution for synchronizing information, tracking flows and improving coordination between health actors.',
         tags: ['Pharmacy', 'Synchronization', 'Health'],
         status: 'In development'
+      },
+      {
+        title: 'ExpoCheck',
+        description: 'Control and verification solution designed to secure field operations, registrations and participation proofs.',
+        tags: ['Control', 'Verification', 'Field'],
+        status: 'In development'
+      },
+      {
+        title: 'EduCongo',
+        description: 'Education project built to support learning, academic organization and access to digital tools adapted to the Congolese context.',
+        tags: ['Education', 'DRC', 'Digital'],
+        status: 'In development'
       }
     ]
   }
@@ -211,18 +211,6 @@ const swProjectGroups: ProjectGroup[] = [
         description: 'Mfumo wa elimu unaosaidia kuthibitisha uhalali wa nyaraka rasmi za masomo na kuimarisha ujumuishaji wa wanafunzi.',
         tags: ['Elimu', 'Uthibitishaji', 'Ujumuishaji'],
         status: 'Tovuti inalindwa na serikali'
-      },
-      {
-        title: 'ExpoCheck',
-        description: 'Suluhisho la ukaguzi na uthibitishaji kwa shughuli za uwanjani, usajili na ushahidi wa ushiriki.',
-        tags: ['Ukaguzi', 'Uthibitishaji', 'Uwanja'],
-        status: 'Inaendelezwa'
-      },
-      {
-        title: 'EduCongo',
-        description: 'Mradi wa elimu unaosaidia masomo, mpangilio wa kitaaluma na matumizi ya zana za kidijitali kwa mazingira ya Kongo.',
-        tags: ['Elimu', 'RDC', 'Digitali'],
-        status: 'Inaendelezwa'
       },
       {
         title: 'RundiCheck',
@@ -257,6 +245,18 @@ const swProjectGroups: ProjectGroup[] = [
         title: 'PharmaSync',
         description: 'Suluhisho la kidijitali kwa sekta ya dawa, likilenga usawazishaji wa taarifa, ufuatiliaji na uratibu wa huduma za afya.',
         tags: ['Dawa', 'Synchronization', 'Afya'],
+        status: 'Inaendelezwa'
+      },
+      {
+        title: 'ExpoCheck',
+        description: 'Suluhisho la ukaguzi na uthibitishaji kwa shughuli za uwanjani, usajili na ushahidi wa ushiriki.',
+        tags: ['Ukaguzi', 'Uthibitishaji', 'Uwanja'],
+        status: 'Inaendelezwa'
+      },
+      {
+        title: 'EduCongo',
+        description: 'Mradi wa elimu unaosaidia masomo, mpangilio wa kitaaluma na matumizi ya zana za kidijitali kwa mazingira ya Kongo.',
+        tags: ['Elimu', 'RDC', 'Digitali'],
         status: 'Inaendelezwa'
       }
     ]
@@ -403,7 +403,7 @@ export const content: Record<Language, Content> = {
         { title: 'Backend', items: ['Django', 'Django REST Framework', 'API REST', 'Architecture applicative'] },
         { title: 'Frontend', items: ['React', 'Vite', 'TypeScript', 'Interfaces responsives', 'Tailwind CSS'] },
         { title: 'Temps réel et qualité', items: ['WebSockets', 'Synchronisation en temps réel', 'Pre-commit', 'Husky', 'CI/CD'] },
-        { title: 'Concepts avancés', items: ['Offline-first', 'Service Workers', 'IndexedDB', 'Web3', 'Smart escrows'] }
+        { title: 'Concepts avancés', items: ['Offline-first', 'Service Workers', 'IndexedDB', 'Web3', 'Smart escrows', 'Blockchain en apprentissage continu'] }
       ]
     },
     languages: {
@@ -418,6 +418,7 @@ export const content: Record<Language, Content> = {
     contact: {
       title: 'Contact',
       text: 'Disponible pour des collaborations technologiques, communautaires et institutionnelles.',
+      formNotice: 'Le formulaire de contact n’est pas encore fonctionnel. Pour le moment, utilisez les icônes de contact rapide.',
       email: 'mandela.fanuel.1@gmail.com',
       phone: '+25769096758',
       location: 'Gitega, Burundi'
@@ -486,7 +487,7 @@ export const content: Record<Language, Content> = {
         { title: 'Backend', items: ['Django', 'Django REST Framework', 'REST APIs', 'Application architecture'] },
         { title: 'Frontend', items: ['React', 'Vite', 'TypeScript', 'Responsive interfaces', 'Tailwind CSS'] },
         { title: 'Real-time and quality', items: ['WebSockets', 'Real-time synchronization', 'Pre-commit', 'Husky', 'CI/CD'] },
-        { title: 'Advanced concepts', items: ['Offline-first', 'Service Workers', 'IndexedDB', 'Web3', 'Smart escrows'] }
+        { title: 'Advanced concepts', items: ['Offline-first', 'Service Workers', 'IndexedDB', 'Web3', 'Smart escrows', 'Blockchain in continuous learning'] }
       ]
     },
     languages: {
@@ -494,7 +495,7 @@ export const content: Record<Language, Content> = {
       items: ['French: very good spoken and written', 'English: very good spoken and written', 'Kiswahili: very good spoken and written', 'Kirundi: very good spoken and written', 'Kinyarwanda: very good spoken and written', 'Other Congolese dialects']
     },
     projects: { title: 'Real projects', intro: 'Professional and personal real projects, including published projects and projects still in development.', groups: enProjectGroups },
-    contact: { title: 'Contact', text: 'Available for technology, community and institutional collaborations.', email: 'mandela.fanuel.1@gmail.com', phone: '+25769096758', location: 'Gitega, Burundi' },
+    contact: { title: 'Contact', text: 'Available for technology, community and institutional collaborations.', formNotice: 'The contact form is not functional yet. For now, please use the quick contact icons.', email: 'mandela.fanuel.1@gmail.com', phone: '+25769096758', location: 'Gitega, Burundi' },
     footer: '© 2026 Mandela KASUMBA Fanuel. All rights reserved. Crafted with precision and passion for useful software solutions in East Africa and international markets.'
   },
   sw: {
@@ -559,7 +560,7 @@ export const content: Record<Language, Content> = {
         { title: 'Backend', items: ['Django', 'Django REST Framework', 'REST API', 'Architecture'] },
         { title: 'Frontend', items: ['React', 'Vite', 'TypeScript', 'Responsive UI', 'Tailwind CSS'] },
         { title: 'Real-time na quality', items: ['WebSockets', 'Real-time synchronization', 'Pre-commit', 'Husky', 'CI/CD'] },
-        { title: 'Advanced concepts', items: ['Offline-first', 'Service Workers', 'IndexedDB', 'Web3', 'Smart escrows'] }
+        { title: 'Advanced concepts', items: ['Offline-first', 'Service Workers', 'IndexedDB', 'Web3', 'Smart escrows', 'Blockchain ninayojifunza kila wakati'] }
       ]
     },
     languages: {
@@ -567,7 +568,7 @@ export const content: Record<Language, Content> = {
       items: ['Kifaransa: vizuri sana', 'Kiingereza: vizuri sana', 'Kiswahili: vizuri sana', 'Kirundi: vizuri sana', 'Kinyarwanda: vizuri sana', 'Lahaja nyingine za Kongo']
     },
     projects: { title: 'Miradi halisi', intro: 'Miradi halisi ya kazi na binafsi, ikijumuisha iliyochapishwa na inayoendelea kutengenezwa.', groups: swProjectGroups },
-    contact: { title: 'Mawasiliano', text: 'Napatikana kwa ushirikiano wa teknolojia, jamii na taasisi.', email: 'mandela.fanuel.1@gmail.com', phone: '+25769096758', location: 'Gitega, Burundi' },
+    contact: { title: 'Mawasiliano', text: 'Napatikana kwa ushirikiano wa teknolojia, jamii na taasisi.', formNotice: 'Fomu ya mawasiliano bado haifanyi kazi. Kwa sasa, tumia icons za mawasiliano ya haraka.', email: 'mandela.fanuel.1@gmail.com', phone: '+25769096758', location: 'Gitega, Burundi' },
     footer: '© 2026 Mandela KASUMBA Fanuel. Haki zote zimehifadhiwa. Imetengenezwa kwa umakini na ari kwa suluhisho za programu zenye manufaa.'
   }
 };
