@@ -119,7 +119,7 @@ const frProjectGroups: ProjectGroup[] = [
 
 const enProjectGroups: ProjectGroup[] = [
   {
-    title: 'Professional work - RundiNova',
+    title: 'Professional work - RundiNova Tech',
     items: [
       {
         title: 'ComLab Burundi',
@@ -192,7 +192,7 @@ const enProjectGroups: ProjectGroup[] = [
 
 const swProjectGroups: ProjectGroup[] = [
   {
-    title: 'Kazi za kitaaluma - RundiNova',
+    title: 'Kazi za kitaaluma - RundiNova Tech',
     items: [
       {
         title: 'ComLab Burundi',

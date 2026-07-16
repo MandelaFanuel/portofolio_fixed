@@ -6,7 +6,7 @@ type SocialItem = {
 
 const socials: SocialItem[] = [
   { href: 'https://www.facebook.com/profile.php?id=100070378223025', label: 'Facebook', icon: 'facebook' },
-  { href: 'https://www.linkedin.com/in/MandelaFanuel', label: 'LinkedIn', icon: 'linkedin' },
+  { href: 'https://www.linkedin.com/in/mandela-kasumba-fanuel-b9228717a', label: 'LinkedIn', icon: 'linkedin' },
   { href: 'https://x.com/MandelaFanuel2', label: 'X', icon: 'x' },
   { href: 'https://github.com/Fanuel045', label: 'GitHub', icon: 'github' },
   { href: 'https://wa.me/25769096758', label: 'WhatsApp', icon: 'whatsapp' },
