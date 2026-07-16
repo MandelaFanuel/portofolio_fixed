@@ -17,6 +17,7 @@
   --page-pad: clamp(16px, 4.8vw, 92px);
   --section-space: clamp(46px, 4.2vw, 78px);
   --section-gap: clamp(28px, 3vw, 52px);
+  --section-edge: clamp(24px, 2.4vw, 38px);
 }
 
 :root[data-theme='dark'] {
@@ -236,6 +237,18 @@ footer img {
 .section-pad {
   width: 100%;
   padding: var(--section-space) var(--page-pad);
+}
+
+.about-section,
+.journey-sections,
+.projects-section {
+  padding-bottom: var(--section-edge);
+}
+
+.journey-sections,
+#skills,
+.contact-section {
+  padding-top: var(--section-edge);
 }
 
 .hero {
@@ -983,6 +996,7 @@ footer .social-links {
     --page-pad: 14px;
     --section-space: 42px;
     --section-gap: 24px;
+    --section-edge: 22px;
   }
 
   .navbar {
@@ -1030,6 +1044,18 @@ footer .social-links {
 
   .section-pad {
     padding-block: var(--section-space);
+  }
+
+  .about-section,
+  .journey-sections,
+  .projects-section {
+    padding-bottom: var(--section-edge);
+  }
+
+  .journey-sections,
+  #skills,
+  .contact-section {
+    padding-top: var(--section-edge);
   }
 
   .hero.section-pad {
